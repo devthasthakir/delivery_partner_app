@@ -92,7 +92,7 @@ export default function ReachPickupScreen({ navigation }) {
             // onPress={onMapPress}
           >
             {coordinates.map((coordinate, index) => (
-              <Marker index={index} coordinate={coordinate} />
+              <Marker index={`Coordinates-${index}`} coordinate={coordinate} />
             ))}
             {coordinates.length >= 2 && (
               <MapViewDirections
