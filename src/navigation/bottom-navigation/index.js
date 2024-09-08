@@ -75,7 +75,7 @@ export function MyTabs() {
         name="Account"
         component={MyProfileScreen}
         options={{
-          tabBarLabel: "Orders",
+          tabBarLabel: "Account",
           tabBarIcon: ({ color, size, focused }) => (
             <MaterialCommunityIcons
               name="account-circle-outline"

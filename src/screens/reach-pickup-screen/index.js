@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import MapView, { Marker } from "react-native-maps";
-import { Image, StyleSheet, View, Text } from "react-native";
+import { Image, StyleSheet, View, Text, Dimensions } from "react-native";
 import * as Location from "expo-location";
 import MapViewDirections from "react-native-maps-directions";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
@@ -13,6 +13,31 @@ import { icons } from "../../constants/icons";
 export default function ReachPickupScreen({ navigation }) {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+
+  const { width, height } = Dimensions.get("window");
+  const ASPECT_RATIO = width / height;
+  const LATITUDE = 13.064262;
+  const LONGITUDE = 80.283791;
+  const LATITUDE_DELTA = 0.0922;
+  const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+
+  const GOOGLE_MAPS_APIKEY = "AIzaSyBXVFktsGXZBC2cT89xUmC2xgdkF8wuzgQ";
+  const [coordinates, setCoordinates] = useState([
+    {
+      latitude: 13.064262,
+      longitude: 80.283791,
+    },
+    {
+      latitude: 13.003387,
+      longitude: 80.255043,
+    },
+  ]);
+
+  const mapView = useRef(null);
+  const destination = {
+    latitude: 13.003387,
+    longitude: 80.255043,
+  };
 
   // ref
   const bottomSheetRef = useRef(null);
@@ -49,24 +74,59 @@ export default function ReachPickupScreen({ navigation }) {
       <View style={styles.container}>
         {location && (
           <MapView
-            style={styles.map}
-            region={location}
+            region={{
+              latitude: LATITUDE,
+              longitude: LONGITUDE,
+              latitudeDelta: LATITUDE_DELTA,
+              longitudeDelta: LONGITUDE_DELTA,
+            }}
             zoomEnabled
             showsMyLocationButton={true}
             showsUserLocation
             showsCompass
+            style={{
+              width: "100%",
+              height: "73%",
+            }}
+            ref={mapView}
+            // onPress={onMapPress}
           >
-            <Marker
-              coordinate={{ latitude: 13.067439, longitude: 80.237617 }}
-            />
-            <MapViewDirections
-              origin={location}
-              destination={{ latitude: 13.067439, longitude: 80.237617 }}
-              apikey={"AIzaSyBXVFktsGXZBC2cT89xUmC2xgdkF8wuzgQ"}
-              timePrecision="now"
-              strokeWidth={3}
-              strokeColor="hotpink"
-            />
+            {coordinates.map((coordinate, index) => (
+              <Marker index={index} coordinate={coordinate} />
+            ))}
+            {coordinates.length >= 2 && (
+              <MapViewDirections
+                origin={coordinates[0]}
+                waypoints={
+                  coordinates.length > 2 ? coordinates.slice(1, -1) : undefined
+                }
+                destination={coordinates[coordinates.length - 1]}
+                apikey={GOOGLE_MAPS_APIKEY}
+                strokeWidth={6}
+                strokeColor={theme.colors.primary}
+                optimizeWaypoints={true}
+                onStart={(params) => {
+                  console.log(
+                    `Started routing between "${params.origin}" and "${params.destination}"`
+                  );
+                }}
+                onReady={(result) => {
+                  console.log(`Distance: ${result.distance} km`);
+                  console.log(`Duration: ${result.duration} min.`);
+                  mapView.current.fitToCoordinates(result.coordinates, {
+                    edgePadding: {
+                      right: width / 20,
+                      bottom: height / 20,
+                      left: width / 20,
+                      top: height / 20,
+                    },
+                  });
+                }}
+                onError={(errorMessage) => {
+                  // console.log('GOT AN ERROR');
+                }}
+              />
+            )}
           </MapView>
         )}
 

@@ -2,7 +2,6 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // Screens Import
-import MyDrawer from "./drawer-navigation";
 import { MyTabs } from "./bottom-navigation";
 import { PickupOrderScreen, ReachDropScreen, ReachPickupScreen,DropOrderScreen } from "../screens";
 
