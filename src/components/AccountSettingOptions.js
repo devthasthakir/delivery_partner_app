@@ -1,19 +1,20 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Pressable } from "react-native";
 import React from "react";
 import { icons } from "../constants/icons";
 import { FONTS, SIZES } from "../constants/theme";
 import { useTheme } from "@react-navigation/native";
 
-const AccountSettingOptions = ({ icon, title,containerStyle }) => {
+const AccountSettingOptions = ({ icon, title, containerStyle, onPress }) => {
   const theme = useTheme();
   return (
-    <View
+    <Pressable
       style={{
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        ...containerStyle
+        ...containerStyle,
       }}
+      onPress={onPress}
     >
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <View
@@ -41,6 +42,7 @@ const AccountSettingOptions = ({ icon, title,containerStyle }) => {
             color: theme.colors.text,
             marginLeft: SIZES.margin.large,
             ...FONTS.body2,
+            fontFamily: "Poppins-Medium",
           }}
         >
           {title}
@@ -52,7 +54,7 @@ const AccountSettingOptions = ({ icon, title,containerStyle }) => {
           style={{ width: 24, height: 24, tintColor: theme.colors.text }}
         />
       </View>
-    </View>
+    </Pressable>
   );
 };
 

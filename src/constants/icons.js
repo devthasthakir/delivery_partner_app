@@ -16,6 +16,11 @@ const lock = require("../assets/icons/lock.png");
 const bell = require("../assets/icons/bell.png");
 const terms = require("../assets/icons/terms.png");
 const logout = require("../assets/icons/logout.png");
+const eye = require("../assets/icons/eye.png");
+const eye_crossed = require("../assets/icons/crossed-eye.png");
+const dot = require("../assets/icons/dot.png");
+const pencil = require("../assets/icons/pencil.png");
+const email = require("../assets/icons/email.png");
 
 export const icons = {
   order: order,
@@ -35,5 +40,10 @@ export const icons = {
   lock: lock,
   bell: bell,
   terms: terms,
-  logout:logout
+  logout: logout,
+  eye,
+  eye_crossed: eye_crossed,
+  dot: dot,
+  pencil: pencil,
+  email: email
 };

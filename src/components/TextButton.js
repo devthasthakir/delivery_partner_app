@@ -34,13 +34,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// Prop Types
-TextButton.propTypes = {
-  title: PropTypes.string.isRequired,
-  onPress: PropTypes.func.isRequired,
-  disabled: PropTypes.bool,
-  titleStyle: PropTypes.object,
-  containerStyle: PropTypes.object,
-};
+
 
 export default TextButton;

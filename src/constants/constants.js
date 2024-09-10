@@ -14,3 +14,13 @@ export const ORDER_TABS = [
     name: "All Orders",
   },
 ];
+export const NOTIFICATION_TABS = [
+  {
+    id: 1,
+    name: "All",
+  },
+  {
+    id: 2,
+    name: "Unread",
+  }
+];

@@ -7,8 +7,10 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Text, TouchableOpacity, View } from "react-native";
 import { SIZES } from "../../constants/theme";
+import { useNavigation } from "@react-navigation/native";
 export function MyTabs() {
   const theme = useTheme();
+  const navigation = useNavigation();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -24,14 +26,14 @@ export function MyTabs() {
                 gap: SIZES.margin.medium,
               }}
             >
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate("ContactSupport")}>
                 <Feather
                   name="help-circle"
                   size={24}
                   color={theme.colors.text}
                 />
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate("Notifications")}>
                 <Ionicons
                   name="notifications-outline"
                   size={24}
