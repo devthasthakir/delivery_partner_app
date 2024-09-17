@@ -5,7 +5,7 @@ import { SIZES, FONTS } from "../constants/theme";
 import { icons } from "../constants/icons";
 import { useNavigation } from "@react-navigation/native";
 import TextButton from "./TextButton";
-const OrderCard = ({ disabled,buttonTitle }) => {
+const OrderCard = ({ disabled, buttonTitle }) => {
   const theme = useTheme();
   const navigation = useNavigation();
   return (
@@ -19,6 +19,10 @@ const OrderCard = ({ disabled,buttonTitle }) => {
         marginHorizontal: SIZES.margin.medium,
         marginTop: SIZES.margin.small,
         marginBottom: SIZES.margin.small,
+        shadowColor: "#000", // Color of the shadow
+        shadowOffset: { width: 0, height: 2 }, // Offset of the shadow
+        shadowOpacity: 0.2, // Opacity of the shadow
+        shadowRadius: 2, // Radius of the shadow
       }}
       disabled={disabled}
       onPress={() => navigation.navigate("ReachPickUp")}
@@ -218,7 +222,7 @@ const OrderCard = ({ disabled,buttonTitle }) => {
         <TextButton
           title={buttonTitle}
           containerStyle={{
-            height: SIZES.buttonHeight.medium,
+            height: SIZES.buttonHeight.small,
             backgroundColor: theme.colors.primary,
             borderRadius: SIZES.radius.small,
           }}

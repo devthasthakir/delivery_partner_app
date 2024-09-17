@@ -1,6 +1,5 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet, View, Image } from "react-native";
-import PropTypes from "prop-types";
 
 const IconButton = ({
   title,
@@ -73,28 +72,5 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
   },
 });
-
-// Prop Types
-IconButton.propTypes = {
-  title: PropTypes.string.isRequired,
-  onPress: PropTypes.func.isRequired,
-  icon: PropTypes.oneOfType([
-    PropTypes.number, // For local images
-    PropTypes.object, // For remote images
-  ]),
-  iconSize: PropTypes.number,
-  iconColor: PropTypes.string,
-  disabled: PropTypes.bool,
-  titleStyle: PropTypes.object,
-  containerStyle: PropTypes.object,
-  iconPosition: PropTypes.oneOf(["left", "right"]),
-};
-
-// Default Props
-IconButton.defaultProps = {
-  disabled: false,
-  containerStyle: {},
-  iconPosition: "left",
-};
 
 export default IconButton;

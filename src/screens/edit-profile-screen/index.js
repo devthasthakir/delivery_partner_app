@@ -1,19 +1,22 @@
 import { View, Text, Image } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { SIZES, FONTS } from "../../constants/theme";
 import { useTheme } from "@react-navigation/native";
 import { icons } from "../../constants/icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import FormInput from "../../components/FormInput";
 import TextButton from "../../components/TextButton";
+import PhoneNumberInput from "../../components/PhoneNumberInput";
 
 const EditProfileScreen = () => {
   const theme = useTheme();
+  const [fullName, setFullName] = useState("Mohammed Thasthakir");
+  const [email, setEmail] = useState("mohammed.mt392@gmail.com");
+  const [phone, setPhone] = useState("");
   return (
     <SafeAreaView
       style={{
         marginHorizontal: SIZES.margin.medium,
-        marginVertical: SIZES.margin.medium,
         flex: 1,
       }}
     >
@@ -60,6 +63,7 @@ const EditProfileScreen = () => {
               style={{
                 width: 16,
                 height: 16,
+                tintColor: theme.colors.primary,
               }}
               resizeMode="contain"
             />
@@ -68,39 +72,32 @@ const EditProfileScreen = () => {
       </View>
       <View style={{ marginVertical: SIZES.margin.large }}>
         <View>
-          <Text
-            style={{
-              ...FONTS.body2,
-              color: theme.colors.text,
-              fontFamily: "Poppins-SemiBold",
-            }}
-          >
-            Full Name
-          </Text>
           <FormInput
-            placeholder={"Enter your email"}
+            placeholder={"Enter your name"}
             type="email"
-            value={"Mohammed Thasthakir"}
+            keyboardType="text"
+            label={"Full Name"}
+            value={fullName}
+            onChangeText={(value) => setFullName(value)}
+            startIcon={icons.pencil}
           />
         </View>
         <View style={{ marginTop: SIZES.margin.small }}>
-          <Text
-            style={{
-              ...FONTS.body2,
-              color: theme.colors.text,
-              fontFamily: "Poppins-SemiBold",
-            }}
-          >
-            Email Address
-          </Text>
           <FormInput
             placeholder={"Enter your email"}
             type="email"
-            value={"mohammed@gmail.com"}
+            label={"Email"}
+            value={email}
+            keyboardType="email-address"
+            autoCompleteType="email"
+            onChangeText={(value) => setEmail(value)}
+            readOnly={true}
+            startIcon={icons.envelope}
+            endIcon={icons.correct}
           />
         </View>
         <View style={{ marginTop: SIZES.margin.small }}>
-          <Text
+          {/* <Text
             style={{
               ...FONTS.body2,
               color: theme.colors.text,
@@ -113,7 +110,8 @@ const EditProfileScreen = () => {
             placeholder={"Enter your email"}
             type="email"
             value={"+916369383954"}
-          />
+          /> */}
+          <PhoneNumberInput label={"Phone Number"} />
         </View>
         <TextButton
           title={"Save changes"}

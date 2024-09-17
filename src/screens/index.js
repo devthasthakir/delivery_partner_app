@@ -5,7 +5,7 @@ import PickupOrderScreen from "./pickup-order-screen";
 import ReachPickupScreen from "./reach-pickup-screen";
 import ReachDropScreen from "./reach-drop-screen";
 import DropOrderScreen from "./drop-order-screen";
-import LoginScreen from "./login-screen";
+import LoginScreen from "./signin-screen";
 import OTPVerificationScreen from "./otp-verification-screen";
 import OnboardingScreen from "./onboarding-screen";
 import NotificationScreen from "./notifications-screen";
@@ -14,6 +14,7 @@ import TermsConditionScreen from "./terms-condition-screen";
 import ChangePasswordScreen from "./change-password-screen";
 import ForgetPasswordScreen from "./forget-password-screen";
 import ContactSupportScreen from "./contact-support-screen";
+import SignatureScreen from "./signature-screen";
 export {
   HomeScreen,
   MyProfileScreen,
@@ -30,5 +31,7 @@ export {
   TermsConditionScreen,
   ChangePasswordScreen,
   ForgetPasswordScreen,
-  ContactSupportScreen
+  ContactSupportScreen,
+  SignatureScreen,
+  
 };

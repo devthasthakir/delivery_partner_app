@@ -2,24 +2,26 @@ import { View, Text, Pressable, Keyboard } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SIZES, FONTS } from "../../constants/theme";
-import FormInput from "../../components/FormInput";
-import { icons } from "../../constants/icons";
 import { useTheme } from "@react-navigation/native";
 import TextButton from "../../components/TextButton";
 import OTPTextView from "react-native-otp-textinput";
+import LoadingAnimation from "../../components/LoadingAnimation";
 
 const OTPVerificationScreen = ({ navigation }) => {
   const theme = useTheme();
   const [otp, setOtp] = useState("");
+  const [loading, setLoading] = useState(false);
+  const handleVerifyOtp = () => {};
+  const handleResendOtp = () => {};
   return (
-    <View
+    <SafeAreaView
       style={{
         flex: 1,
         marginHorizontal: SIZES.margin.medium,
-        marginBottom: SIZES.margin.large,
       }}
     >
-      <View style={{ marginTop: SIZES.margin.large}}>
+      <LoadingAnimation visible={loading} />
+      <View>
         <Text style={{ ...FONTS.h3, color: theme.colors.text }}>
           OTP Verification
         </Text>
@@ -71,7 +73,7 @@ const OTPVerificationScreen = ({ navigation }) => {
           >
             Didn't receive the OTP?
           </Text>
-          <Pressable onPress={() => navigation.navigate("ForgetPassword")}>
+          <Pressable onPress={handleResendOtp}>
             <Text
               style={{
                 ...FONTS.h6,
@@ -96,9 +98,11 @@ const OTPVerificationScreen = ({ navigation }) => {
           titleStyle={{
             color: "white",
           }}
+          disabled={otp.length !== 6}
+          onPress={handleVerifyOtp}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

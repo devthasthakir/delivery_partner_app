@@ -4,9 +4,12 @@ import { useTheme } from "@react-navigation/native";
 import { SIZES, FONTS } from "../../constants/theme";
 import { icons } from "../../constants/icons";
 import AccountSettingOptions from "../../components/AccountSettingOptions";
+import { toggleTheme } from "../../store/themeSlice";
+import { useDispatch } from "react-redux";
 
 const MyProfileScreen = ({ navigation }) => {
   const theme = useTheme();
+  const dispatch = useDispatch()
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -69,7 +72,7 @@ const MyProfileScreen = ({ navigation }) => {
         <AccountSettingOptions
           icon={icons.user}
           title={"Profile Settings"}
-          onPress={() => navigation.navigate("EditProfile")}
+          onPress={() => dispatch(toggleTheme())}
         />
         <AccountSettingOptions
           icon={icons.lock}

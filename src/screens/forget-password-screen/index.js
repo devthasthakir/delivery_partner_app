@@ -3,22 +3,38 @@ import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SIZES, FONTS } from "../../constants/theme";
 import FormInput from "../../components/FormInput";
-import { icons } from "../../constants/icons";
 import { useTheme } from "@react-navigation/native";
 import TextButton from "../../components/TextButton";
+import { SCREENS } from "../../constants/constants";
+import { icons } from "../../constants/icons";
+import { utils } from "../../utils";
+import LoadingAnimation from "../../components/LoadingAnimation";
 
 const ForgetPasswordScreen = ({ navigation }) => {
   const theme = useTheme();
-  const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleForgetPassword = () => {
+    navigation.navigate(SCREENS.OTP_VERIFICATION.name);
+  };
+
+  const handleEndIconPress = () => {
+    if (emailError) {
+      setEmail("");
+      setEmailError("");
+    }
+  };
   return (
-    <View
+    <SafeAreaView
       style={{
         flex: 1,
         marginHorizontal: SIZES.margin.medium,
-        marginBottom: SIZES.margin.large,
       }}
     >
-      <View style={{ marginTop: SIZES.margin.large   }}>
+      <LoadingAnimation visible={loading} />
+      <View>
         <Text style={{ ...FONTS.h3, color: theme.colors.text }}>
           Forget Password
         </Text>
@@ -34,18 +50,32 @@ const ForgetPasswordScreen = ({ navigation }) => {
         </Text>
       </View>
       <View style={{ marginTop: SIZES.margin.large * 2 }}>
-        <View>
-          <Text
-            style={{
-              ...FONTS.body2,
-              color: theme.colors.text,
-              fontFamily: "Poppins-SemiBold",
-            }}
-          >
-            Email
-          </Text>
-          <FormInput placeholder={"Enter your email"} type="email" />
-        </View>
+        <FormInput
+          placeholder={"Enter your email"}
+          keyboardType="email-address"
+          autoCompleteType="email"
+          startIcon={icons.envelope}
+          label={"Email"}
+          errorMsg={emailError}
+          onEndIconPress={handleEndIconPress}
+          value={email}
+          endIcon={
+            email == "" || (email != "" && emailError == "")
+              ? icons.correct
+              : icons.cancel
+          }
+          onChangeText={(value) => {
+            utils.validateEmail(value, setEmailError);
+            setEmail(value);
+          }}
+          endIconTintColor={
+            email == ""
+              ? "grey"
+              : email != "" && emailError == ""
+              ? "green"
+              : "red"
+          }
+        />
       </View>
       <View style={{ justifyContent: "flex-end", flex: 1 }}>
         <TextButton
@@ -53,15 +83,15 @@ const ForgetPasswordScreen = ({ navigation }) => {
           containerStyle={{
             backgroundColor: theme.colors.primary,
             height: SIZES.buttonHeight.large,
-            borderRadius: SIZES.radius.large,
-            marginTop: SIZES.margin.large * 2,
+            borderRadius: SIZES.radius.medium,
           }}
           titleStyle={{
             color: "white",
           }}
+          onPress={handleForgetPassword}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

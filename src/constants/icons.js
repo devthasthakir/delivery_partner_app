@@ -21,6 +21,9 @@ const eye_crossed = require("../assets/icons/crossed-eye.png");
 const dot = require("../assets/icons/dot.png");
 const pencil = require("../assets/icons/pencil.png");
 const email = require("../assets/icons/email.png");
+const correct = require("../assets/icons/completed.png");
+const cancel = require("../assets/icons/cancel.png");
+const envelope = require("../assets/icons/envelope.png");
 
 export const icons = {
   order: order,
@@ -41,9 +44,12 @@ export const icons = {
   bell: bell,
   terms: terms,
   logout: logout,
-  eye,
+  eye:eye,
   eye_crossed: eye_crossed,
   dot: dot,
   pencil: pencil,
-  email: email
+  email: email,
+  correct: correct,
+  cancel: cancel,
+  envelope: envelope,
 };

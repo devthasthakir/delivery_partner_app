@@ -2,7 +2,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // Screens Import
-import { MyTabs } from "./bottom-navigation";
+import { BottomTabs } from "./bottom-navigation";
 import {
   PickupOrderScreen,
   ReachDropScreen,
@@ -16,7 +16,10 @@ import {
   ChangePasswordScreen,
   ContactSupportScreen,
   TermsConditionScreen,
+  SignatureScreen,
+  OnboardingScreen,
 } from "../screens";
+import { SCREENS } from "../constants/constants";
 
 const Navigation = () => {
   const Stack = createNativeStackNavigator();
@@ -26,35 +29,23 @@ const Navigation = () => {
       screenOptions={{
         headerShown: false,
       }}
+      initialRouteName="EditProfile"
     >
-      <Stack.Screen name="Drawer" component={MyTabs} />
       <Stack.Screen
-        name="ContactSupport"
-        component={ContactSupportScreen}
-        options={{
-          headerShown: true,
-          headerTitle: "Contact Support",
-        }}
+        name={SCREENS.ONBOARDING.name}
+        component={OnboardingScreen}
       />
       <Stack.Screen
-        name="TermsCondition"
-        component={TermsConditionScreen}
+        name={SCREENS.SIGN_IN.name}
+        component={LoginScreen}
         options={{
           headerShown: true,
-          headerTitle: "Terms & Conditions",
+          headerTitle: "",
         }}
       />
+      <Stack.Screen name="Drawer" component={BottomTabs} />
       <Stack.Screen
-        name="Notifications"
-        component={NotificationScreen}
-        options={{
-          headerShown: true,
-          headerTitle: "Notifications",
-        }}
-      />
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen
-        name="OTPVerification"
+        name={SCREENS.OTP_VERIFICATION.name}
         component={OTPVerificationScreen}
         options={{
           headerShown: true,
@@ -62,7 +53,7 @@ const Navigation = () => {
         }}
       />
       <Stack.Screen
-        name="ForgetPassword"
+        name={SCREENS.FORGET_PASSWORD.name}
         component={ForgetPasswordScreen}
         options={{
           headerShown: true,
@@ -70,53 +61,78 @@ const Navigation = () => {
         }}
       />
       <Stack.Screen
-        name="PickUpOrder"
-        component={PickupOrderScreen}
+        name={SCREENS.CONTACT_SUPPORT.name}
+        component={ContactSupportScreen}
         options={{
           headerShown: true,
-          headerTitle: "Pick order",
+          headerTitle: SCREENS.CONTACT_SUPPORT.title,
         }}
       />
       <Stack.Screen
-        name="ReachPickUp"
-        component={ReachPickupScreen}
+        name={SCREENS.TERMS_CONDITION.name}
+        component={TermsConditionScreen}
         options={{
           headerShown: true,
-          headerTitle: "Reach Pickup",
+          headerTitle: SCREENS.TERMS_CONDITION.title,
         }}
       />
       <Stack.Screen
-        name="ReachDrop"
-        component={ReachDropScreen}
+        name={SCREENS.NOTIFICATIONS.name}
+        component={NotificationScreen}
         options={{
           headerShown: true,
-          headerTitle: "Reach Drop",
+          headerTitle: SCREENS.NOTIFICATIONS.title,
         }}
       />
       <Stack.Screen
-        name="DropOrder"
-        component={DropOrderScreen}
-        options={{
-          headerShown: true,
-          headerTitle: "Drop Order",
-        }}
-      />
-      <Stack.Screen
-        name="EditProfile"
+        name={SCREENS.EDIT_PROFILE.name}
         component={EditProfileScreen}
         options={{
           headerShown: true,
-          headerTitle: "Edit Profile",
+          headerTitle: SCREENS.EDIT_PROFILE.title,
         }}
       />
       <Stack.Screen
-        name="ChangePassword"
+        name={SCREENS.CHANGE_PASSWORD.name}
         component={ChangePasswordScreen}
         options={{
           headerShown: true,
-          headerTitle: "Change Password",
+          headerTitle: SCREENS.CHANGE_PASSWORD.title,
         }}
       />
+      <Stack.Screen
+        name={SCREENS.PICKUP_ORDER.name}
+        component={PickupOrderScreen}
+        options={{
+          headerShown: true,
+          headerTitle: SCREENS.PICKUP_ORDER.title,
+        }}
+      />
+      <Stack.Screen
+        name={SCREENS.REACH_PICKUP.name}
+        component={ReachPickupScreen}
+        options={{
+          headerShown: true,
+          headerTitle: SCREENS.REACH_PICKUP.title,
+        }}
+      />
+      <Stack.Screen
+        name={SCREENS.REACH_DROP.name}
+        component={ReachDropScreen}
+        options={{
+          headerShown: true,
+          headerTitle: SCREENS.REACH_DROP.title,
+        }}
+      />
+      <Stack.Screen
+        name={SCREENS.DROP_ORDER.name}
+        component={DropOrderScreen}
+        options={{
+          headerShown: true,
+          headerTitle: SCREENS.DROP_ORDER.title,
+        }}
+      />
+      <Stack.Screen name="Signature" component={SignatureScreen} />
     </Stack.Navigator>
   );
 };

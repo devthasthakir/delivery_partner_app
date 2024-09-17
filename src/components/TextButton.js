@@ -1,6 +1,5 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
-import PropTypes from "prop-types";
 
 const TextButton = ({
   title,
@@ -9,6 +8,19 @@ const TextButton = ({
   titleStyle,
   containerStyle,
 }) => {
+  // Styles using StyleSheet
+  const styles = StyleSheet.create({
+    button: {
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    text: {
+      fontFamily: "Poppins-Medium",
+    },
+    disabledButton: {
+      opacity: 0.6, // Reduce opacity for disabled state
+    },
+  });
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -19,21 +31,5 @@ const TextButton = ({
     </TouchableOpacity>
   );
 };
-
-// Styles using StyleSheet
-const styles = StyleSheet.create({
-  button: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    fontWeight: "bold",
-  },
-  disabledButton: {
-    opacity: 0.6, // Reduce opacity for disabled state
-  },
-});
-
-
 
 export default TextButton;

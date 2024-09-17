@@ -129,6 +129,10 @@ export default function HomeScreen() {
                 borderRadius: SIZES.radius.small,
                 flex: 1,
                 elevation: 2,
+                shadowColor: "#000", // Color of the shadow
+                shadowOffset: { width: 0, height: 2 }, // Offset of the shadow
+                shadowOpacity: 0.2, // Opacity of the shadow
+                shadowRadius: 2, // Radius of the shadow
               }}
             >
               <View style={{ alignItems: "center" }}>
@@ -168,6 +172,10 @@ export default function HomeScreen() {
                 borderRadius: SIZES.radius.small,
                 flex: 1,
                 elevation: 2,
+                shadowColor: "#000", // Color of the shadow
+                shadowOffset: { width: 0, height: 2 }, // Offset of the shadow
+                shadowOpacity: 0.2, // Opacity of the shadow
+                shadowRadius: 2, // Radius of the shadow
               }}
             >
               <View style={{ alignItems: "center" }}>
@@ -215,6 +223,10 @@ export default function HomeScreen() {
                 borderRadius: SIZES.radius.small,
                 flex: 1,
                 elevation: 2,
+                shadowColor: "#000", // Color of the shadow
+                shadowOffset: { width: 0, height: 2 }, // Offset of the shadow
+                shadowOpacity: 0.2, // Opacity of the shadow
+                shadowRadius: 2, // Radius of the shadow
               }}
             >
               <View style={{ alignItems: "center" }}>
@@ -254,6 +266,10 @@ export default function HomeScreen() {
                 borderRadius: SIZES.radius.small,
                 flex: 1,
                 elevation: 2,
+                shadowColor: "#000", // Color of the shadow
+                shadowOffset: { width: 0, height: 2 }, // Offset of the shadow
+                shadowOpacity: 0.2, // Opacity of the shadow
+                shadowRadius: 2, // Radius of the shadow
               }}
             >
               <View style={{ alignItems: "center" }}>
